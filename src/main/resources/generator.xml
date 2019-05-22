@@ -44,8 +44,8 @@
         </javaClientGenerator>
 
         <!-- 6.要生成的表 -->
-        <table tableName="tbl_emp"  />
-        <table tableName="tble_dept" />
+        <table tableName="user"  />
+
 
     </context>
 </generatorConfiguration>
