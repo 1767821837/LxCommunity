@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TbleDeptMapper {
+
     long countByExample(TbleDeptExample example);
 
     int deleteByExample(TbleDeptExample example);

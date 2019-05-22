@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
     @RequestMapping("/user")
-    public @ResponseBody  String adduser(){
+    public @ResponseBody   String adduser(){
+
+
         return "欢饮";
     }
 }
