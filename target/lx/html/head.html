@@ -1,0 +1,284 @@
+<style >
+    a {
+        text-decoration: none;
+        color: #ffffff;
+    }
+    .test1 {
+        width: auto;
+        height: 999px;
+        background-color: #42A5F5;
+    }
+</style>
+
+
+<div id="app">
+    <!--导航栏-->
+    <template class="hidden-sm-and-up">
+        <v-navigation-drawer
+                v-model="drawer"
+                absolute
+                temporary
+        >
+            <v-toolbar class="transparent">
+                <v-list-tile-avatar class="hidden-sm-and-up">
+                    <img src="https://cdn.vuetifyjs.com/images/john.jpg" class="px-0 py-0"
+                         style="border-radius: 50%;border: 1px solid #ffffff;width: 36px;height: 36px ">
+                </v-list-tile-avatar>
+                <span>1767821837</span>
+            </v-toolbar>
+            <v-list-tile
+                    v-for="item in items"
+                    :key="item.title"
+                    @click=""
+            >
+                <v-list-tile-action>
+                    <v-icon>{{ item.icon }}</v-icon>
+                </v-list-tile-action>
+
+                <v-list-tile-content>
+                    <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                </v-list-tile-content>
+            </v-list-tile>
+        </v-navigation-drawer>
+    </template>
+    <!--logo位置-->
+    <template>
+        <v-flex xs12 class="hidden-xs-only">
+            <v-flex xs12>
+                <v-card dark color="teal">
+                    <v-container fill-height fluid>
+                        <v-spacer></v-spacer>
+                        <v-flex xs1 sm2 md3 lg2>
+                            <v-layout fill-height row>
+                                <v-list-tile-avatar>
+                                    <img src="https://cdn.vuetifyjs.com/images/john.jpg" class="px-0 py-0"
+                                         style="border-radius: 50%;border: 2px solid #ffffff;width: 48px;height: 48px ">
+                                </v-list-tile-avatar>
+                                <v-menu
+                                        :lazy="true"
+                                        v-model="menu"
+                                        open-on-hover
+                                        :close-on-content-click="false"
+                                        :nudge-width="250"
+                                        offset-x
+                                >
+                                    <template v-slot:activator="{ on }">
+                                        <v-btn
+                                                dark
+                                                v-on="on"
+                                                class="elevation-0 hidden-sm-and-down px-0 py-0"
+                                                color="teal"
+                                        >
+                                            176782187
+                                        </v-btn>
+                                    </template>
+
+                                    <v-card>
+                                        <v-list>
+                                            <v-list-tile avatar>
+                                                <v-list-tile-avatar>
+                                                    <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                                                </v-list-tile-avatar>
+
+                                                <v-list-tile-content>
+                                                    <v-list-tile-title><span
+                                                            style="color: #29B6F6;border:1px solid #29B6F6"
+                                                            class="px-2 py-0">欢迎来到本站!</span>
+                                                    </v-list-tile-title>
+                                                    <v-list-tile-sub-title class="py-1"><span>会员：1767821837 <a
+                                                            href="#">个人设置</a></span></v-list-tile-sub-title>
+                                                </v-list-tile-content>
+
+                                                <v-list-tile-action>
+                                                    <v-btn
+                                                            :class="fav ? 'red--text' : ''"
+                                                            icon
+                                                            @click="fav = !fav"
+                                                    >
+                                                        <v-icon>favorite</v-icon>
+                                                    </v-btn>
+                                                </v-list-tile-action>
+                                            </v-list-tile>
+                                        </v-list>
+                                        <v-divider></v-divider>
+                                        <v-list>
+                                            <v-list-tile>
+                                                <v-list-tile-action>
+                                                    <v-switch v-model="message" color="purple"></v-switch>
+                                                </v-list-tile-action>
+                                                <v-list-tile-title>Enable messages</v-list-tile-title>
+                                            </v-list-tile>
+                                            <v-list-tile>
+                                                <v-list-tile-action>
+                                                    <v-switch v-model="hints" color="purple"></v-switch>
+                                                </v-list-tile-action>
+                                                <v-list-tile-title>Enable hints</v-list-tile-title>
+                                            </v-list-tile>
+                                        </v-list>
+                                        <v-card-actions>
+                                            <v-spacer></v-spacer>
+
+                                            <v-btn flat @click="menu = false">Cancel</v-btn>
+                                            <v-btn color="primary" flat @click="menu = false">Save</v-btn>
+                                        </v-card-actions>
+                                    </v-card>
+                                </v-menu>
+                                <span style="margin: auto auto " class="elevation-0 hidden-xs-only"><a
+                                        href="#">退出</a></span>
+                            </v-layout>
+                        </v-flex>
+                    </v-container>
+
+                </v-card>
+            </v-flex>
+        </v-flex>
+    </template>
+    </template>
+    <!--xs  md lg-->
+    <template>
+        <v-flex xs12></v-flex>
+        <v-toolbar
+                absolute
+                color="teal lighten-3"
+                style="position: sticky;top: 0px"
+                dark="dark"
+                drawer="drawer"
+        >
+            <v-flex xs1>
+                <v-toolbar-side-icon @click.stop="drawer = !drawer" class="hidden-sm-and-up"></v-toolbar-side-icon>
+            </v-flex>
+            <v-menu open-on-hover bottom offset-y
+                    v-for="items in title"
+                    nudge-bottom="-80"
+                    :lazy="true"
+            >
+                <template v-slot:activator="{ on }">
+                    <v-btn
+                            color="teal lighten-3"
+                            dark
+                            v-on="on"
+                            class="elevation-0 hidden-xs-only"
+                            @click="count(items)"
+                    >
+                        {{items.title}}
+                    </v-btn>
+                </template>
+                <v-list class="munback">
+                    <v-list-tile
+
+                            v-for="(item, index) in items.body"
+                            :key="index"
+                            @click="count(item)"
+                    >
+                        <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                    </v-list-tile>
+                </v-list>
+            </v-menu>
+            <v-btn
+                    color="teal lighten-3"
+                    dark
+                    v-for="item in titlebut"
+                    v-on="on"
+                    class="elevation-0 hidden-xs-only"
+                    @click="count(items)"
+            >{{item.title}}</v-btn>
+            <v-flex xs2 offset-xs5 class="hidden-sm-and-up">
+                <span>乐享社区</span></v-flex>
+            <v-spacer></v-spacer>
+            <v-list-tile-avatar class="hidden-sm-and-up">
+                <img src="https://cdn.vuetifyjs.com/images/john.jpg" class="px-0 py-0"
+                     style="border-radius: 50%;border: 1px solid #ffffff;width: 36px;height: 36px ">
+            </v-list-tile-avatar>
+        </v-toolbar>
+        <v-toolbar light class="hidden-sm-and-down">
+            <v-toolbar-title>Title</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items v-for="item in itemss" :key="item.text" class="hidden-sm-and-down">
+                <v-btn flat>{{ item.text }}</v-btn>
+            </v-toolbar-items>
+        </v-toolbar>
+    </template>
+    <div class="test1"></div>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                title: "分析",
+                disabel: true,
+                dark: false,// 是否暗黑主题
+                drawer: false,// 左侧导航是否隐藏
+                ss: true,
+                menuMap: {},
+                mini: true,
+                fav: true,
+                menu: false,
+                message: false,
+                hints: true,
+                userimage: "",
+                title: [{
+                    title: "论坛",
+                    body: [{title: "java教程"}, {title: "前端教程"}, {title: "php教程"}, {title: "python教程"},
+                        {title: "linux运维"}, {title: "微信教程"}]
+                },
+                    {
+                        title: "资源汇总",
+                        body: [{title: "IT教程"}, {title: "电子书"}, {title: "软件下载"}]
+                    },
+                    {
+                        title: "获取金币",
+                        body: [{title: "每日摇摇类"}, {title: "会员每月红包"}, {title: "免费领取金币"}]
+                    }
+
+                ],
+                titlebut:[{title:"资源悬赏"},{title:"礼品兑换"},{title:"发布资源"}],
+                items: [
+                    {title: 'Home', icon: 'dashboard'},
+                    {title: 'About', icon: 'question_answer'}
+                ],
+                itemssss: [
+                    {title: 'Click Me'},
+                    {title: 'Click Me'},
+                    {title: 'Click Me'},
+                    {title: 'Click Me 2'}
+                ]
+            }
+
+        },
+        methods: {
+            count: function (str) {
+
+            }
+        }
+
+
+    })
+
+</script>
+
+
+<script type="text/javascript">
+    // 获取导航栏到屏幕顶部的距离
+    var oTop = $(".nav").offset().top;
+    //获取导航栏的高度，此高度用于保证内容的平滑过渡
+    var martop = $('.nav').outerHeight();
+    console.error(martop)
+    var sTop = 0;
+    // 监听页面的滚动
+    $(window).scroll(function () {
+        // 获取页面向上滚动的距离
+        sTop = $(this).scrollTop();
+        // 当导航栏到达屏幕顶端
+        if (sTop >= oTop) {
+            // 修改导航栏position属性，使之固定在屏幕顶端
+            $(".nav").css({"position": "fixed", "top": "0"});
+            // 修改内容的margin-top值，保证平滑过渡
+            $(".content").css({"margin-top": martop});
+        } else {
+            // 当导航栏脱离屏幕顶端时，回复原来的属性
+            $(".nav").css({"position": "static"});
+            $(".content").css({"margin-top": "0"});
+        }
+    });
+</script>
