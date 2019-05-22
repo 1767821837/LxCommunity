@@ -38,7 +38,7 @@
         </sqlMapGenerator>
 
         <!-- 5. targetPackage：mapper接口生成的位置 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lx.mapper"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lx.dao"
                              targetProject=".\src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
